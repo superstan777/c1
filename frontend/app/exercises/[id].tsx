@@ -1,7 +1,7 @@
 import { Button } from "@/components/Button";
 import { Modal } from "@/components/Modal";
 import { COLORS } from "@/consts/colors";
-import { useSessionStore } from "@/lib/sessionStore";
+import { useSessionStore } from "@/store/sessionStore";
 
 import { router, useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
@@ -16,10 +16,11 @@ import {
   TextInput,
   View,
 } from "react-native";
+import { useExercisesQuery } from "@/lib/queries";
 
 export default function ExerciseScreen() {
   const { id } = useLocalSearchParams();
-  const { updateProgress, progress } = useSessionStore();
+  const { updateProgress } = useSessionStore();
   const [answer, setAnswer] = useState("");
   const [feedback, setFeedback] = useState<"correct" | "incorrect" | null>(
     null

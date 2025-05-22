@@ -1,5 +1,5 @@
-import { usePersistedStore } from "@/lib/persistedStore";
-import { useSessionStore } from "@/lib/sessionStore";
+import { usePersistedStore } from "@/store/persistedStore";
+import { useSessionStore } from "@/store/sessionStore";
 import { CommonActions, useNavigation } from "@react-navigation/native";
 import { Stack } from "expo-router";
 import { useEffect } from "react";

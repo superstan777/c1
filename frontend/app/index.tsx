@@ -8,10 +8,22 @@ import {
   View,
 } from "react-native";
 
-import { usePersistedStore } from "@/lib/persistedStore";
+import { usePersistedStore } from "@/store/persistedStore";
 import { getMillisecondsUntilMidnight } from "@/utils/getSecondsUntilMidnight";
 
+import { useSessionStore } from "@/store/sessionStore";
+import { useExercises } from "@/lib/useExercises";
+
 export default function Index() {
+  const { data, isLoading } = useExercises();
+  const { setExercises } = useSessionStore();
+
+  useEffect(() => {
+    if (data && !isLoading) {
+      setExercises(data);
+    }
+  }, [data, isLoading]);
+
   const { streak } = usePersistedStore();
   const router = useRouter();
   const [msLeft, setMsLeft] = useState(getMillisecondsUntilMidnight());

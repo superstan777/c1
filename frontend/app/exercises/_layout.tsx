@@ -1,5 +1,5 @@
 import { ProgressBar } from "@/components/ProgressBar";
-import { useSessionStore } from "@/lib/sessionStore";
+import { useSessionStore } from "@/store/sessionStore";
 
 import { Stack } from "expo-router";
 import { View } from "react-native";

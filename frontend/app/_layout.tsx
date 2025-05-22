@@ -3,17 +3,17 @@ import { Stack, router } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { AppState, AppStateStatus } from "react-native";
 
-import { usePersistedStore } from "@/lib/persistedStore";
+import { usePersistedStore } from "@/store/persistedStore";
 import { queryClient } from "@/lib/queryClient";
-import { useSessionStore } from "@/lib/sessionStore";
-import { MOCKDATA } from "@/MOCKDATA";
+
 import { getMillisecondsUntilMidnight } from "@/utils/getSecondsUntilMidnight";
 
 export default function RootLayout() {
   const appState = useRef<AppStateStatus>(AppState.currentState);
   const [mounted, setMounted] = useState(false);
-  const { resetStreakIfMissed } = usePersistedStore();
-  const { setExercises } = useSessionStore();
+  const { resetStreakIfMissed, lastCompletionDate } = usePersistedStore();
+
+  console.log(lastCompletionDate);
 
   const refetchExercises = () => {
     queryClient.invalidateQueries({ queryKey: ["exercises"] });
@@ -28,7 +28,6 @@ export default function RootLayout() {
   };
 
   useEffect(() => {
-    setExercises(MOCKDATA); // optional fallback
     setMounted(true);
   }, []);
 

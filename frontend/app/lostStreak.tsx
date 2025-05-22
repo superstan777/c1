@@ -1,4 +1,4 @@
-import { useSessionStore } from "@/lib/sessionStore";
+import { useSessionStore } from "@/store/sessionStore";
 import { CommonActions, useNavigation } from "@react-navigation/native";
 import { Stack } from "expo-router";
 import { SafeAreaView, StyleSheet, Text, TouchableOpacity } from "react-native";
